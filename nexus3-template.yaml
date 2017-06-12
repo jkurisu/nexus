@@ -36,15 +36,7 @@ objects:
         maxSurge: 25%
         maxUnavailable: 0
         timeoutSeconds: 600
-        updatePeriodSeconds: 1
-        post:
-          failurePolicy: Abort
-          execNewPod:
-            containerName: ${SERVICE_NAME}
-            command:
-              - "/bin/bash"
-              - "-c"
-              - "curl -o /tmp/nexus-functions -s https://raw.githubusercontent.com/OpenShiftDemos/nexus/master/scripts/nexus-functions; source /tmp/nexus-functions; add_nexus3_redhat_repos admin admin123 http://${SERVICE_NAME}:8081"
+        updatePeriodSeconds: 1       
       type: Rolling
     template:
       metadata:
@@ -143,4 +135,4 @@ parameters:
   displayName: Sonatype Nexus version
   name: NEXUS_VERSION
   required: true
-  value: 3.2.1
+  value: 3.3.1
